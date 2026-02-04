@@ -1,7 +1,7 @@
-import { Router } from 'express';
-import * as catCtrl from '../controllers/categoryController';
-import { protect, restrictTo } from '../middlewares/auth';
-import { upload } from '../middlewares/upload';
+import { Router } from "express";
+import * as catCtrl from "../controllers/categoryController";
+import { protect, restrictTo } from "../middlewares/auth";
+import { upload } from "../middlewares/upload";
 
 const router = Router();
 
@@ -15,8 +15,7 @@ const router = Router();
  *       200:
  *         description: List of categories
  */
-router.get('/', catCtrl.getAllCategories);
-
+router.get("/", catCtrl.getAllCategories);
 
 /**
  * @swagger
@@ -35,6 +34,8 @@ router.get('/', catCtrl.getAllCategories);
  *             properties:
  *               name:
  *                 type: string
+ *               description:
+ *                 type: string
  *               image:
  *                 type: string
  *                 format: binary
@@ -43,13 +44,12 @@ router.get('/', catCtrl.getAllCategories);
  *         description: Category created successfully
  */
 router.post(
-  '/',
+  "/",
   protect,
-  restrictTo('admin'),
-  upload.single('image'),
-  catCtrl.createCategory
+  restrictTo("admin"),
+  upload.single("image"),
+  catCtrl.createCategory,
 );
-
 
 /**
  * @swagger
@@ -69,8 +69,7 @@ router.post(
  *       404:
  *         description: Category not found
  */
-router.get('/:id', catCtrl.getCategoryById);
-
+router.get("/:id", catCtrl.getCategoryById);
 
 /**
  * @swagger
@@ -102,13 +101,12 @@ router.get('/:id', catCtrl.getCategoryById);
  *         description: Category updated successfully
  */
 router.patch(
-  '/:id',
+  "/:id",
   protect,
-  restrictTo('admin'),
-  upload.single('image'),
-  catCtrl.updateCategoryById
+  restrictTo("admin"),
+  upload.single("image"),
+  catCtrl.updateCategoryById,
 );
-
 
 /**
  * @swagger
@@ -130,11 +128,6 @@ router.patch(
  *       404:
  *         description: Category not found
  */
-router.delete(
-  '/:id',
-  protect,
-  restrictTo('admin'),
-  catCtrl.deleteCategoryById
-);
+router.delete("/:id", protect, restrictTo("admin"), catCtrl.deleteCategoryById);
 
 export default router;

@@ -19,15 +19,11 @@ const router = Router();
  *           schema:
  *             type: object
  *             required:
- *               - cartId
- *               - shippingAddress
+ *               - cartName
  *             properties:
- *               cartId:
+ *               cartName:
  *                 type: string
- *                 description: The ID of the cart to convert into an order
- *               shippingAddress:
- *                 type: string
- *                 description: Shipping address for the order
+ *                 description: The name of the cart to convert into an order
  *     responses:
  *       201:
  *         description: Order created successfully
@@ -44,7 +40,7 @@ const router = Router();
  *                     order:
  *                       $ref: '#/components/schemas/Order'
  *       400:
- *         description: Cart is empty or invalid request
+ *         description: Invalid request or empty cart
  *       401:
  *         description: Unauthorized, user must be logged in
  *       404:

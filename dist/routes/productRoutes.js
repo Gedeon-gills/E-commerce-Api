@@ -35,7 +35,6 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const productController = __importStar(require("../controllers/productController"));
-const auth_1 = require("../middlewares/auth");
 const upload_1 = require("../middlewares/upload");
 const router = (0, express_1.Router)();
 /**
@@ -98,7 +97,7 @@ const router = (0, express_1.Router)();
  *       401:
  *         description: Unauthorized (no token or invalid token)
  */
-router.get('/', auth_1.protect, productController.getAllProducts);
+router.get('/', productController.getAllProducts);
 /**
  * @swagger
  * /products/{id}:
@@ -162,7 +161,7 @@ router.get('/:id', productController.getProduct);
  *       404:
  *         description: Category not found
  */
-router.post('/', auth_1.protect, (0, auth_1.restrictTo)('admin'), upload_1.upload.array('images', 5), productController.createProduct);
+router.post('/', upload_1.upload.array('images', 5), productController.createProduct);
 /**
  * @swagger
  * /products/{id}:
@@ -206,7 +205,7 @@ router.post('/', auth_1.protect, (0, auth_1.restrictTo)('admin'), upload_1.uploa
  *       404:
  *         description: Product or category not found
  */
-router.patch('/:id', auth_1.protect, (0, auth_1.restrictTo)('admin'), upload_1.upload.array('images', 5), productController.updateProduct);
+router.patch('/:id', upload_1.upload.array('images', 5), productController.updateProduct);
 /**
  * @swagger
  * /products/{id}:
@@ -228,5 +227,5 @@ router.patch('/:id', auth_1.protect, (0, auth_1.restrictTo)('admin'), upload_1.u
  *       404:
  *         description: Product not found
  */
-router.delete('/:id', auth_1.protect, (0, auth_1.restrictTo)('admin'), productController.deleteProduct);
+router.delete('/:id', productController.deleteProduct);
 exports.default = router;

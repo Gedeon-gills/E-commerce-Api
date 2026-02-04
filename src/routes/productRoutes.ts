@@ -66,7 +66,7 @@ const router = Router();
  *       401:
  *         description: Unauthorized (no token or invalid token)
  */
-router.get('/', protect, productController.getAllProducts);
+router.get('/', productController.getAllProducts);
 
 
 /**
@@ -135,8 +135,6 @@ router.get('/:id', productController.getProduct);
  */
 router.post(
   '/',
-  protect,
-  restrictTo('admin'),
   upload.array('images', 5),
   productController.createProduct
 );
@@ -186,8 +184,6 @@ router.post(
  */
 router.patch(
   '/:id',
-  protect,
-  restrictTo('admin'),
   upload.array('images', 5),
   productController.updateProduct
 );
@@ -215,8 +211,6 @@ router.patch(
  */
 router.delete(
   '/:id',
-  protect,
-  restrictTo('admin'),
   productController.deleteProduct
 );
 

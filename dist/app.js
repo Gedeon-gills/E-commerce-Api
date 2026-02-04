@@ -12,9 +12,11 @@ const swagger_1 = require("./config/swagger");
 const error_1 = require("./middlewares/error");
 const AppError_1 = require("./utils/AppError");
 const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
+const categoryRoutes_1 = __importDefault(require("./routes/categoryRoutes"));
 const productRoutes_1 = __importDefault(require("./routes/productRoutes"));
 const cartRoutes_1 = __importDefault(require("./routes/cartRoutes"));
 const orderRoutes_1 = __importDefault(require("./routes/orderRoutes"));
+const adminRoutes_1 = __importDefault(require("./routes/adminRoutes"));
 const app = (0, express_1.default)();
 // Security & Logging
 app.use((0, helmet_1.default)());
@@ -27,9 +29,11 @@ if (process.env.NODE_ENV === 'development') {
 app.use('/api-docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_1.swaggerSpec));
 // Routes
 app.use('/api/v1/auth', authRoutes_1.default);
+app.use('/api/v1/categories', categoryRoutes_1.default);
 app.use('/api/v1/products', productRoutes_1.default);
 app.use('/api/v1/cart', cartRoutes_1.default);
 app.use('/api/v1/orders', orderRoutes_1.default);
+app.use('/api/v1/admin', adminRoutes_1.default);
 // Health check
 app.get('/health', (req, res) => res.status(200).json({ status: 'ok' }));
 // 404

@@ -48,7 +48,7 @@ const router = (0, express_1.Router)();
  *       200:
  *         description: List of categories
  */
-router.get('/', catCtrl.getAllCategories);
+router.get("/", catCtrl.getAllCategories);
 /**
  * @swagger
  * /categories:
@@ -66,6 +66,8 @@ router.get('/', catCtrl.getAllCategories);
  *             properties:
  *               name:
  *                 type: string
+ *               description:
+ *                 type: string
  *               image:
  *                 type: string
  *                 format: binary
@@ -73,7 +75,7 @@ router.get('/', catCtrl.getAllCategories);
  *       201:
  *         description: Category created successfully
  */
-router.post('/', auth_1.protect, (0, auth_1.restrictTo)('admin'), upload_1.upload.single('image'), catCtrl.createCategory);
+router.post("/", auth_1.protect, (0, auth_1.restrictTo)("admin"), upload_1.upload.single("image"), catCtrl.createCategory);
 /**
  * @swagger
  * /categories/{id}:
@@ -92,7 +94,7 @@ router.post('/', auth_1.protect, (0, auth_1.restrictTo)('admin'), upload_1.uploa
  *       404:
  *         description: Category not found
  */
-router.get('/:id', catCtrl.getCategoryById);
+router.get("/:id", catCtrl.getCategoryById);
 /**
  * @swagger
  * /categories/{id}:
@@ -122,7 +124,7 @@ router.get('/:id', catCtrl.getCategoryById);
  *       200:
  *         description: Category updated successfully
  */
-router.patch('/:id', auth_1.protect, (0, auth_1.restrictTo)('admin'), upload_1.upload.single('image'), catCtrl.updateCategoryById);
+router.patch("/:id", auth_1.protect, (0, auth_1.restrictTo)("admin"), upload_1.upload.single("image"), catCtrl.updateCategoryById);
 /**
  * @swagger
  * /categories/{id}:
@@ -143,5 +145,5 @@ router.patch('/:id', auth_1.protect, (0, auth_1.restrictTo)('admin'), upload_1.u
  *       404:
  *         description: Category not found
  */
-router.delete('/:id', auth_1.protect, (0, auth_1.restrictTo)('admin'), catCtrl.deleteCategoryById);
+router.delete("/:id", auth_1.protect, (0, auth_1.restrictTo)("admin"), catCtrl.deleteCategoryById);
 exports.default = router;

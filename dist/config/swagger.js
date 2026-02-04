@@ -18,7 +18,7 @@ const options = {
                 url: "http://localhost:5000/api/v1",
                 description: "Development server",
             },
-            { url: "https://example.com", description: "Production server" },
+            { url: "https://e-commerce-api-i03f.onrender.com", description: "Production server" },
         ],
         components: {
             securitySchemes: {
